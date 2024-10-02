@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Meal Plan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .meal {
+            margin: 10px 0;
+        }
+
+        .macros {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weekly Meal Plan</h1>
+        <div id="meal-plan"></div>
+    </div>
+    <script>
+        const mealsSeparated = [
+            {
+                "day": "Monday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Oatmeal with berries and nuts",
+                        "macros": {
+                            "calories": 350,
+                            "protein": 15,
+                            "fat": 10,
+                            "carbs": 50
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Lentil soup with brown rice",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 60
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegan shepherd's pie with mashed potatoes",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 25,
+                            "fat": 20,
+                            "carbs": 55
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Tuesday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Tofu scramble with vegetables",
+                        "macros": {
+                            "calories": 300,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 30
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Quinoa salad with chickpeas and vegetables",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 25,
+                            "fat": 15,
+                            "carbs": 50
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegetable curry with roti",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 20,
+                            "fat": 20,
+                            "carbs": 50
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Wednesday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Vegan pancakes with fruit compote",
+                        "macros": {
+                            "calories": 350,
+                            "protein": 15,
+                            "fat": 10,
+                            "carbs": 50
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Leftover vegetable curry with brown rice",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 60
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegan tacos with black beans and salsa",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 25,
+                            "fat": 20,
+                            "carbs": 55
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Thursday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Chickpea omelet with spinach",
+                        "macros": {
+                            "calories": 300,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 30
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Lentil tacos with avocado",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 25,
+                            "fat": 15,
+                            "carbs": 50
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegan shepherd's pie with roasted vegetables",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 20,
+                            "fat": 20,
+                            "carbs": 50
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Friday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Smoothie bowl with fruit, plant-based milk, and granola",
+                        "macros": {
+                            "calories": 350,
+                            "protein": 15,
+                            "fat": 10,
+                            "carbs": 50
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Leftover vegan shepherd's pie",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 60
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegetable biryani with tofu",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 25,
+                            "fat": 20,
+                            "carbs": 55
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Saturday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Vegan breakfast burrito with beans, vegetables, and salsa",
+                        "macros": {
+                            "calories": 350,
+                            "protein": 15,
+                            "fat": 10,
+                            "carbs": 50
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Chana masala with roti",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 60
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegan sushi with brown rice",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 25,
+                            "fat": 20,
+                            "carbs": 55
+                        }
+                    }
+                }
+            },
+            {
+                "day": "Sunday",
+                "meals": {
+                    "breakfast": {
+                        "meal": "Tofu scramble with vegetables and avocado",
+                        "macros": {
+                            "calories": 300,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 30
+                        }
+                    },
+                    "lunch": {
+                        "meal": "Leftover vegan sushi",
+                        "macros": {
+                            "calories": 400,
+                            "protein": 20,
+                            "fat": 10,
+                            "carbs": 60
+                        }
+                    },
+                    "dinner": {
+                        "meal": "Vegetable pasta with marinara sauce",
+                        "macros": {
+                            "calories": 450,
+                            "protein": 25,
+                            "fat": 20,
+                            "carbs": 55
+                        }
+                    }
+                }
+            }
+        ];
+
+        const mealPlanContainer = document.getElementById('meal-plan');
+
+        mealsSeparated.forEach(day => {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const dayTitle = document.createElement('h2');
+            dayTitle.innerText = day.day;
+
+            card.appendChild(dayTitle);
+
+            for (const [mealType, mealInfo] of Object.entries(day.meals)) {
+                if (mealInfo.meal) {
+                    const mealDiv = document.createElement('div');
+                    mealDiv.classList.add('meal');
+                    mealDiv.innerHTML = `<strong>${mealType.charAt(0).toUpperCase() + mealType.slice(1)}:</strong> ${mealInfo.meal}`;
+                    
+                    const macrosDiv = document.createElement('div');
+                    macrosDiv.classList.add('macros');
+                    macrosDiv.innerHTML = `Calories: ${mealInfo.macros.calories}, Protein: ${mealInfo.macros.protein}g, Fat: ${mealInfo.macros.fat}g, Carbs: ${mealInfo.macros.carbs}g`;
+                    
+                    mealDiv.appendChild(macrosDiv);
+                    card.appendChild(mealDiv);
+                }
+            }
+
+            mealPlanContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
