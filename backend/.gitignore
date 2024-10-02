@@ -15,5 +15,3 @@ logs/
 # Dependency directories
 bower_components/
 jspm_packages/
-
-Dockerfile
