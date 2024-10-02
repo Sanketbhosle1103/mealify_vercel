@@ -82,9 +82,7 @@ const Home = () => {
 
   // SubHead Component
   const SubHead = ({ color, title }) => (
-    <h2 className={`text-${color} font-semibold text-lg uppercase`}>
-      {title}
-    </h2>
+    <h2 className={`text-${color} font-semibold text-lg uppercase`}>{title}</h2>
   );
 
   // SectionHead Component
@@ -126,11 +124,14 @@ const Home = () => {
               <div className="h-[2px] w-[100px] bg-orange"></div>
               <SubHead color="main" title="About Our Meal Plans" />
             </div>
-            <SectionHead color="black" title="Personalized Plans for Every Diet" />
+            <SectionHead
+              color="black"
+              title="Personalized Plans for Every Diet"
+            />
             <p className="text-base text-blackGray">
               Create your custom meal plan based on your dietary restrictions,
-              preferences, and health goals. Whether you're vegan, gluten-free, or
-              looking to gain muscle, we have a plan for you.
+              preferences, and health goals. Whether you're vegan, gluten-free,
+              or looking to gain muscle, we have a plan for you.
             </p>
             <div className="my-10">
               <Button>
@@ -150,7 +151,10 @@ const Home = () => {
               <SubHead color="main" title="Recipe Suggestions" />
             </div>
             <div className="lg:flex items-center justify-between">
-              <SectionHead color="white" title="Delicious Recipes for Your Meal Plan" />
+              <SectionHead
+                color="white"
+                title="Delicious Recipes for Your Meal Plan"
+              />
               <div className="lg:w-3/12">
                 <Button>
                   <Link to="/recipes" className="md:px-2">
@@ -190,7 +194,10 @@ const Home = () => {
                 <div className="h-1 w-24 bg-orange-500 rounded-md mx-2"></div>
                 <SubHead color="main" title="Choose Your Plan" />
               </div>
-              <SectionHead color="black" title="Select a Plan that Fits Your Goals" />
+              <SectionHead
+                color="black"
+                title="Select a Plan that Fits Your Goals"
+              />
             </div>
           </div>
           <div className="md:flex justify-center">
@@ -209,7 +216,17 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <div className="testimonial-section">
+        <h3>Testimonials</h3>
+        <div className="testimonial">
+          <p>{testimonials[currentTestimonialIndex].feedback}</p>
+          <h4>{testimonials[currentTestimonialIndex].name}</h4>
+          <span>{testimonials[currentTestimonialIndex].title}</span>
+        </div>
+        <button onClick={previousTestimonial}>Previous</button>
+        <button onClick={nextTestimonial}>Next</button>
+      </div>
+      <Footer />
     </div>
   );
 };

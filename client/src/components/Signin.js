@@ -32,7 +32,7 @@ function Signin() {
     }
 
     try {
-      const response = await axios.post("https://mealify-api.vercel.app/register", {
+      const response = await axios.post("http://localhost:5001/register", {
         name,
         email,
         password,
