@@ -98,12 +98,12 @@ router.post("/generate-mealplan", async (req, res) => {
     selectedState,
     selectedCity,
     schedule,
-    maintenanceCalorie,
+    maintenanceCalories,
     protein,
     fats,
     carbs,
   } = req.body;
-    console.log(maintenanceCalorie,protein,fats,carbs);
+    console.log(maintenanceCalories,protein,fats,carbs);
   const mealPlanPrompt = `You are a nutrition expert.
   They have the following dietary restrictions: ${Object.entries(
     dietaryRestrictions
@@ -113,14 +113,16 @@ router.post("/generate-mealplan", async (req, res) => {
     .join(", ")}.
   The user lives in ${selectedCity}, ${selectedState}, ${selectedCountry}.
   You have to generate a meal plan for the user.
-  The maintenance calories for the user per day is ${maintenanceCalorie}
+  The maintenance calories for the user per day is ${maintenanceCalories}
   They aim for a goal of ${protein} grams of protein, ${fats} grams of fat and ${carbs} grams of carbs per day each.
   Provide a meal-plan for this much time period: ${schedule}.
   If the schedule is weekly then give mealplan for 7 days day wise.
   
   Incorporate ingredients that are locally available and commonly used in regional dishes.
 
-  The format of the meal plan should include breakfast, lunch, evening snack and dinner. Just make sure that the total number of calories match the ${maintenanceCalorie} per day and the total macro nutrients match the user's requirements as well. Provide the macronutrients for each meal as well.
+  The format of the meal plan should include breakfast, lunch, evening snack and dinner. Just make sure that the total number of calories for each day is ${maintenanceCalories}. Calculate the calories for the meal by the formula:
+  4 calories for 1 gram of protein, 4 calories for 1 gram of carb and 9 calories for 1g of fat. Add all these macros and calculate the total calories for the meal and the day.
+  The total macro nutrients should match the user's requirements as well. Provide the macronutrients for each meal as well.
   
   Just give the data for the days required and nothing else meaning only give for the days specified.
   `;

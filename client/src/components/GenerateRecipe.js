@@ -39,14 +39,13 @@ const GenerateRecipe = () => {
   };
 
   // State variables
-  const [goal, setGoal] = useState("");
   const [dietaryRestrictions, setDietaryRestrictions] = useState({
     vegan: false,
     vegetarian: false,
+    nonvegetarian: false,
     glutenFree: false,
     dairyFree: false,
     nutFree: false,
-    lowCarb: false,
     other: "",
   });
 
@@ -56,8 +55,8 @@ const GenerateRecipe = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [schedule, setSchedule] = useState("");
-  const {maintenanceCalories,setMaintenanceCalories} = useContext(UserContext)
-  const {macros, setMacros} = useContext(UserContext);
+  const {maintenanceCalories} = useContext(UserContext)
+  const {macros} = useContext(UserContext);
 
   // State to store generated meal plan
   const [generatedMealPlan, setGeneratedMealPlan] = useState(null);
@@ -158,10 +157,10 @@ const GenerateRecipe = () => {
           {[
             { label: "Vegan", name: "vegan" },
             { label: "Vegetarian", name: "vegetarian" },
+            { label: "Non-Vegetarian", name: "nonvegetarian" },
             { label: "Gluten-Free", name: "glutenFree" },
             { label: "Dairy-Free", name: "dairyFree" },
             { label: "Nut-Free", name: "nutFree" },
-            { label: "Low-Carb", name: "lowCarb" },
           ].map((restriction) => (
             <label key={restriction.name} className="block mb-2">
               <input
