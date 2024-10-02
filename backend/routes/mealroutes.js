@@ -4,7 +4,7 @@ const MealPlan = require("../Models/MealPlan");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config();
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY);
+const genAI = new GoogleGenerativeAI(AIzaSyDBKaJCznbPCiiP3agJlxgTdSYLZ5BIU9U);
 
 const separateMeals = (mealPlanText) => {
   console.log("Input to separateMeals:", mealPlanText); // Debug log
