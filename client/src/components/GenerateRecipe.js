@@ -96,13 +96,15 @@ const GenerateRecipe = () => {
       }));
     }
   };
-
+  const {user} = useContext(UserContext);
   const handleRecipeSubmit = async (e) => {
     e.preventDefault();
     const protein = macros.protein;
     const fats = macros.fats;
     const carbs = macros.carbs;
+    
     const formData = {
+      userId : user._id,
       dietaryRestrictions,
       selectedCountry,
       selectedState,

@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
 const MealPlanSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
   mealPlan: {
-    type: Object, // You can customize this type based on your generated meal plan structure
+    type: String,
     required: true,
   },
   goal: {
@@ -10,7 +15,7 @@ const MealPlanSchema = new mongoose.Schema({
     required: true,
   },
   dietaryRestrictions: {
-    type: Object, // Change to Object to accommodate structured data
+    type: Object,
     required: true,
   },
   selectedCountry: {
@@ -40,7 +45,7 @@ const MealPlanSchema = new mongoose.Schema({
     type: Number,
     required: true,
   }
-}, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
+}, { timestamps: true });
 
 const MealPlan = mongoose.model('MealPlan', MealPlanSchema);
 

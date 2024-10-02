@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const MealPlan = require("../Models/MealPlan");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+require("dotenv").config();
 
-const genAI = new GoogleGenerativeAI("AIzaSyDBKaJCznbPCiiP3agJlxgTdSYLZ5BIU9U");
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEN_AI_KEY);
 
 const separateMeals = (mealPlanText) => {
   console.log("Input to separateMeals:", mealPlanText); // Debug log
@@ -93,6 +94,7 @@ const separateMeals = (mealPlanText) => {
 
 router.post("/generate-mealplan", async (req, res) => {
   const {
+    userId,
     dietaryRestrictions,
     selectedCountry,
     selectedState,
@@ -137,19 +139,19 @@ router.post("/generate-mealplan", async (req, res) => {
     // console.log(finalMeal);
     console.log(generatedMealPlan);
 
-    // await MealPlan.create({
-    //   userId: userid,
-    //   mealPlan: generatedMealPlan,
-    //   goal : maintenanceCalorie,
-    //   dietaryRestrictions: JSON.stringify(dietaryRestrictions),
-    //   selectedCountry,
-    //   selectedState,
-    //   selectedCity,
-    //   schedule,
-    //   protein,
-    //   fats:req.body.fat,
-    //   carbs
-    // });
+    await MealPlan.create({
+      userId,
+      mealPlan: generatedMealPlan,
+      goal : maintenanceCalories,
+      dietaryRestrictions: JSON.stringify(dietaryRestrictions),
+      selectedCountry,
+      selectedState,
+      selectedCity,
+      schedule,
+      protein,
+      fats,
+      carbs
+    });
 
     res.json({ mealPlan: generatedMealPlan});
   } catch (error) {
