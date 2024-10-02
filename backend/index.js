@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_NAME}?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://knightclub538:gaurav5922@cluster0.czvsxsu.mongodb.net/cpnew?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
     console.log("CONNECTED TO MONGODB");
