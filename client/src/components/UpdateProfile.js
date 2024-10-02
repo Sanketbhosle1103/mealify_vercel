@@ -33,7 +33,7 @@ const UpdateProfile = () => {
     e.preventDefault();
     try {
       setUpdating(true);
-      const response = await fetch(`http://localhost/api/update/${user._id}`, {
+      const response = await fetch(`https://mealify-vercel-api.vercel.app/api/update/${user._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
