@@ -38,6 +38,10 @@ app.use("/api/", mealRouter);
  
 const PORT = process.env.PORT || 5001;
 
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome to Mealify");
+});
+
 app.listen(PORT, () => {
   console.log("server is starting on "+PORT);
 });
