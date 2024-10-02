@@ -1,4 +1,4 @@
-import React, { useState, useContext ,useEffect} from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../Usercontext";
 import { Link } from "react-router-dom";
 import {
@@ -11,7 +11,6 @@ import {
 } from "recharts";
 
 const GenerateCalories = () => {
-  const [diet, setDiet] = useState("1");
   const [units, setUnits] = useState("1");
   const [age, setAge] = useState("");
   const [weight, setWeight] = useState("");
@@ -19,7 +18,6 @@ const GenerateCalories = () => {
   const [gender, setGender] = useState("5");
   const [activityLevel, setActivityLevel] = useState("1.2");
   const [goal, setGoal] = useState("0");
-  const [calorieDeficitSurplus, setCalorieDeficitSurplus] = useState("");
   const [protein, setProtein] = useState("1");
   const [fatCarbSplit, setFatCarbSplit] = useState(25);
   const { maintenanceCalories, setMaintenanceCalories } = useContext(UserContext);
@@ -74,11 +72,11 @@ const GenerateCalories = () => {
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg p-6 max-w-xl w-full">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Maintenance Calories Calculator
+          Calories Calculator
         </h2>
         <form className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+            {/* <div>
               <label className="block mb-1 font-semibold">Diet</label>
               <select
                 className="block w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -89,7 +87,7 @@ const GenerateCalories = () => {
                 <option value="2">Leangains</option>
                 <option value="3">Keto</option>
               </select>
-            </div>
+            </div> */}
             <div>
               <label className="block mb-1 font-semibold">Units</label>
               <select
@@ -188,14 +186,14 @@ const GenerateCalories = () => {
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
               >
-                <option value="-20">Lose Weight (–20%)(-500kcal)</option>
-                <option value="-10">Slowly Lose Weight (–10%)(-250kcal)</option>
+                <option value="-20">Lose Weight (–20%)</option>
+                <option value="-10">Slowly Lose Weight (–10%)</option>
                 <option value="0">Maintain Weight (0%)</option>
-                <option value="10">Slowly Gain Weight (+10%)(+250kcal)</option>
-                <option value="20">Gain Weight (+20%)(+500kcal)</option>
+                <option value="10">Slowly Gain Weight (+10%)</option>
+                <option value="20">Gain Weight (+20%)</option>
               </select>
-              <label className="block mb-1">Calorie Deficit/Surplus:</label>
-              <div className="flex">
+              {/* <label className="block mb-1">Calorie Deficit/Surplus:</label> */}
+              {/* <div className="flex">
                 <input
                   type="number"
                   className="flex-grow border border-gray-300 p-2 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -205,7 +203,7 @@ const GenerateCalories = () => {
                 <span className="border border-gray-300 p-2 rounded-r">
                   kcal
                 </span>
-              </div>
+              </div> */}
               <label className="block mb-1">Protein Goal:</label>
               <select
                 className="block w-full border border-gray-300 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -238,7 +236,12 @@ const GenerateCalories = () => {
 
         {showChart && (
           <div className="mt-6">
-            <h3 className="text-2xl font-semibold text-center mb-4">
+            
+            <h3 className="text-3xl font-semibold text-center">
+              Your Calories Goal:{" "}
+              <span className="text-blue-600">{maintenanceCalories} kcal</span>
+            </h3>
+            <h3 className="text-2xl font-semibold pt-10 text-center mb-4">
               Macros Distribution
             </h3>
             <ResponsiveContainer width="100%" height={300}>
@@ -268,10 +271,7 @@ const GenerateCalories = () => {
         )}
         {maintenanceCalories && (
           <div className="mt-6 text-center">
-            <h3 className="text-xl font-semibold">
-              Your Maintenance Calories:{" "}
-              <span className="text-blue-600">{maintenanceCalories} kcal</span>
-            </h3>
+            
             <div className="mt-4 bg-gray-100 p-4 rounded">
               <h4 className="text-lg font-semibold">
                 What Do These Numbers Mean?

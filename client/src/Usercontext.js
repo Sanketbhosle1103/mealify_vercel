@@ -1,11 +1,8 @@
 import React, { createContext, useState, useEffect, useMemo } from "react";
 
-// Create a Context for User
 export const UserContext = createContext({});
 
-// Context Provider Component
 export function UserContextProvider({ children }) {
-  // Initialize user state from localStorage with error handling
   const [user, setUser] = useState(() => {
     try {
       const savedUser = localStorage.getItem("user");
@@ -16,10 +13,7 @@ export function UserContextProvider({ children }) {
     }
   });
 
-  // State to indicate readiness
   const [ready, setReady] = useState(false);
-
-  // State for maintenance calories
   const [maintenanceCalories, setMaintenanceCalories] = useState(0);
 
   // State for macronutrients with default values
