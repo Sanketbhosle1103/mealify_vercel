@@ -117,7 +117,7 @@ const GenerateRecipe = () => {
     };
     try {
       const response = await fetch(
-        "mealify-vercel-api.vercel.app/generate-mealplan",
+        "https://mealify-vercel-api.vercel.app/generate-mealplan",
         {
           method: "POST",
           headers: {
