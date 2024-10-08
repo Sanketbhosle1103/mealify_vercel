@@ -23,8 +23,8 @@ app.use(cors(corsOptions));
 
 mongoose
   .connect(
-   `mongodb+srv://sanketbhosle:sanketbhosle@cluster0.anj8aqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-    // `mongodb+srv://knightclub538:gaurav5922@cluster0.czvsxsu.mongodb.net/cpnew?retryWrites=true&w=majority&appName=Cluster0`
+   // `mongodb+srv://sanketbhosle:sanketbhosle@cluster0.anj8aqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://knightclub538:gaurav5922@cluster0.czvsxsu.mongodb.net/cpnew?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
     console.log("CONNECTED TO MONGODB");
