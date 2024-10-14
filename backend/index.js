@@ -13,9 +13,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["https://mealify-vercel.vercel.app", "http://localhost:3000"],
   credentials: true,
-  methods: "GET, POST, OPTIONS,PUT,DELETE",
+  methods: "GET, POST, OPTIONS, PUT, DELETE",
   allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
 };
  
