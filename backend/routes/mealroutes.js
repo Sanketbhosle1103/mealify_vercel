@@ -12,7 +12,7 @@ const separateMeals = (mealPlanText) => {
     "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
     "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"
   ];
-  
+
   const days = mealPlanText.split(/\*\*\s*([A-Za-z]+)\s*\*\*/g);
   console.log("Days split from input:", days); // Debug log
 
@@ -121,7 +121,6 @@ router.post("/generate-mealplan", async (req, res) => {
   If the schedule is weekly then give mealplan for 7 days day wise.
   
   Incorporate ingredients that are locally available and commonly used in regional dishes.
-
   The format of the meal plan should include breakfast, lunch, evening snack and dinner. Just make sure that the total number of calories for each day is ${maintenanceCalories}. Calculate the calories for the meal by the formula:
   4 calories for 1 gram of protein, 4 calories for 1 gram of carb and 9 calories for 1g of fat. Add all these macros and calculate the total calories for the meal and the day.
   The total macro nutrients should match the user's requirements as well. Provide the macronutrients for each meal as well.
@@ -183,7 +182,6 @@ router.post("generate-recipe", async (req, res) => {
     .filter(([_, v]) => v)
     .map(([k]) => k)
     .join(", ")}.
-
   Suggest 2-3 recipes for ${mealType} with ${calories} calories, ${protein} grams of protein, ${fats} grams of fats and ${carbs} grams of carbs.
   
   Each recipe should include:
