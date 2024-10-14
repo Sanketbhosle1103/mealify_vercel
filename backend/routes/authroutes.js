@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
-const jwtSecret = "gauravrjfefjewiojoiewj";
+const jwtSecret = "sanketrjfefjewiojoiewj";
 
 const PORT = process.env.PORT;
 
