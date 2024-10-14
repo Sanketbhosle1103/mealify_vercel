@@ -11,7 +11,6 @@ router.post("/register", async (req, res) => {
   const { name, email, password, phone } = req.body;
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-
   try {
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
@@ -19,43 +18,35 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ message: "User with this email already exists" });
     }
-
     const existingPhone = await User.findOne({ phone: phone });
     if (existingPhone) {
       return res
         .status(400)
         .json({ message: "User with this phone number already exists" });
     }
-
     await User.create({
       name: name,
       email: email,
       password: hashedPassword,
       phone: phone,
     });
-
     res.json({ message: "User registered successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
-
 router.post("/login", async (req, res) => {
   console.log("login of "+PORT);
   const { email, password } = req.body;
   try {
     const userDoc = await User.findOne({ email });
-
     if (!userDoc) {
       return res.status(404).json({ error: "User not found" });
     }
-
     const passOk = bcrypt.compareSync(password, userDoc.password);
-
     if (!passOk) {
       return res.status(422).json({ error: "Invalid password" });
     }
-
     const token = jwt.sign(
       {
         id: userDoc._id,
@@ -70,7 +61,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 router.post("/logout", (req, res) => {
   try {
     res.clearCookie("token");
@@ -79,7 +69,6 @@ router.post("/logout", (req, res) => {
     console.log(error);
   }
 });
-
 router.put("/update/:id", async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -94,13 +83,11 @@ router.put("/update/:id", async (req, res) => {
       },
       { new: true }
     );
-
     res.status(200).json(updatedUser);
   } catch (error) {
     console.log(error);
   }
 });
-
 router.post("/google", async (req, res) => {
   try {
     // console.log(req.body);
@@ -130,5 +117,4 @@ router.post("/google", async (req, res) => {
     console.log(error);
   }
 });
-
 module.exports = router;
