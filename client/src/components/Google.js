@@ -14,7 +14,7 @@ export default function Google() {
 
       const result = await signInWithPopup(auth, provider);
       console.log(result);
-      const response = await fetch("http://localhost:5001/api/google", {
+      const response = await fetch("https://mealify-vercel-api.vercel.app/api/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
