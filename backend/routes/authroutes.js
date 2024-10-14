@@ -4,6 +4,23 @@ const bcrypt = require("bcryptjs");
 const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
 const jwtSecret = "sanketrjfefjewiojoiewj";
+const cors = require("cors");
+const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
+
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+const corsOptions = {
+  origin: ["https://mealify-vercel.vercel.app", "http://localhost:3000"],
+  credentials: true,
+  methods: "GET, POST, OPTIONS, PUT, DELETE",
+  allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
+};
+ 
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 5001;
 
