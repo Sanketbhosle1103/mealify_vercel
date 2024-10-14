@@ -12,14 +12,26 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// const corsOptions = {
+//   origin: ["https://mealify-vercel.vercel.app", "http://localhost:3000"],
+//   credentials: true,
+//   methods: "GET, POST, OPTIONS, PUT, DELETE",
+//   allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
+// };
+ 
+// app.use(cors(corsOptions));
+
 const corsOptions = {
-  origin: ["https://mealify-vercel.vercel.app", "http://localhost:3000"],
+  origin: process.env.NODE_ENV === "production" 
+    ? "https://mealify-vercel.vercel.app" 
+    : "http://localhost:3000",
   credentials: true,
   methods: "GET, POST, OPTIONS, PUT, DELETE",
   allowedHeaders: ["Content-Type", "X-Auth-Token", "Origin", "Authorization"],
 };
- 
+
 app.use(cors(corsOptions));
+
 
 mongoose
   .connect(
