@@ -32,7 +32,7 @@ function Signin() {
     }
 
     try {
-      const response = await axios.post("https://mealify-vercel-api.vercel.app/register", {
+      const response = await axios.post("https://mealify-vercel-api.vercel.app/api/register", {
         name,
         email,
         password,
