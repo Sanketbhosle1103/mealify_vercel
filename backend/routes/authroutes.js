@@ -5,7 +5,7 @@ const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
 const jwtSecret = "sanketrjfefjewiojoiewj";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5001;
 
 router.post("/register", async (req, res) => {
   const { name, email, password, phone } = req.body;
