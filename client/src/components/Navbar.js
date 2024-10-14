@@ -10,7 +10,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5001/api/logout",
+        "https://mealify-vercel-api.vercel.app/api/logout",
         {},
         { withCredentials: true }
       );
